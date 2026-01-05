@@ -3,8 +3,8 @@ import java.util.*;
 public class Distribute {
     static Random rand = new Random();
     static String[] card_suits = { "♥", "♠", "♣", "♦" };
-    static String[] card_numbers = { " 2", " 3", " 4", " 5", " 6", " 7", " 8", " 9", " 10", " J", " Q", " K", " A" };
-
+    static String[] card_numbers = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+    Playstep plobj = new Playstep();
     static String giveCard() {
         return card_suits[rand.nextInt(card_suits.length)] + card_numbers[rand.nextInt(card_numbers.length)];
     }
@@ -99,12 +99,12 @@ public class Distribute {
     void print() {
         // System.out.println("Computer Cards:");
         // for (String c : computer_cards)
-        //     System.out.println(c);
+        //     System.out.print(c+", ");
 
         System.out.println("\nPlayer Cards:");
         for (String p : player_cards)
             System.out.print(p+", ");
-
         System.out.println("\nTrump card:" + trump_card);
+        System.out.println("\nLast released card:" + plobj.released_card);
     }
 }

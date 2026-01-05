@@ -2,6 +2,9 @@ import java.util.*;
 public class Playstep {
     Scanner sc=new Scanner(System.in);
     Distribute obj;
+    Playstep() {
+        
+    }
 
     Playstep(Distribute obj) {
         this.obj = obj;
@@ -12,7 +15,7 @@ public class Playstep {
         obj.print();
         System.out.println("Enter the cards in order and leave a space after each card name:");
         String input = sc.nextLine();
-        String[] arrangedCard = input.split(", ");
+        String[] arrangedCard = input.split(" ");
         boolean duplicate;
         int i=0;
         do {
@@ -61,13 +64,13 @@ public class Playstep {
             released_card = chosencard;
         }
     }
-    void takeReleasedCard(String card) {
+    void takeReleasedCard(String card,String[] turn) {
         String target = card;
         String newValue = released_card;
 
-        for (int i = 0; i < obj.player_cards.length; i++) {
-            if (obj.player_cards[i].equals(target)) {
-                obj.player_cards[i] = newValue; // replace
+        for (int i = 0; i < turn.length; i++) {
+            if (turn[i].equals(target)) {
+                turn[i] = newValue; // replace
                 break;
             }
         }
