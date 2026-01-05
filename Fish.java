@@ -1,4 +1,5 @@
 import java.util.*;
+
 // git init
 // git add README.md
 // git commit -m "first commit"
@@ -6,7 +7,7 @@ import java.util.*;
 // git remote add origin https://github.com/debarthaSarkar/Card-Game-FISH.git
 // git push -u origin main
 class Fish {
-    
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Distribute distributeobj = new Distribute();
@@ -17,7 +18,11 @@ class Fish {
         String c, top_stack_card = "NULL";
         int i = 0;
         String card;
-        distributeobj.player_cards=plobj.arrangeCards(distributeobj.player_cards);
+        System.out.println("Player Cards:");
+        for (String p : distributeobj.player_cards)
+            System.out.print(p + ", ");
+        System.out.println("\nTrump card:" + distributeobj.trump_card);
+        distributeobj.player_cards = plobj.arrangeCards(distributeobj.player_cards);
         while (i < 35) {
             distributeobj.print();
             // try {
@@ -29,7 +34,7 @@ class Fish {
                 top_stack_card = plobj.checkStack();
                 System.out.println("Choose the card to release:");
                 card = sc.nextLine();
-                plobj.releaseCard(top_stack_card, card);
+                plobj.releaseCard(top_stack_card, card, distributeobj.player_cards);
                 distributeobj.print();
                 // comobj.makeDecision();
             }
@@ -40,16 +45,15 @@ class Fish {
                     top_stack_card = plobj.checkStack();
                     System.out.println("Choose the card to release:");
                     card = sc.nextLine();
-                    plobj.releaseCard(top_stack_card, card);
+                    plobj.releaseCard(top_stack_card, card, distributeobj.player_cards);
                     distributeobj.print();
                     System.out.println(plobj.released_card);
                     break;
 
-                case "2":// interchange the card with the top card of released card
+                case "2":// interchange the card with the last released card
                     System.out.println("Choose the card to release:");
                     card = sc.nextLine();
-                    plobj.takeReleasedCard(card,distributeobj.player_cards);
-
+                    plobj.takeReleasedCard(card, distributeobj.player_cards);
                     distributeobj.print();
                     break;
 
@@ -60,6 +64,7 @@ class Fish {
                 default:
                     break;
             }
+            comobj.makeDecision();
             i++;
         }
 

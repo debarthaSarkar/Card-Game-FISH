@@ -1,6 +1,14 @@
 import java.util.*;
 
 public class Distribute {
+    Distribute()
+    {
+
+    }
+    Distribute(Playstep plobj)
+    {
+        this.plobj = plobj;
+    }
     static Random rand = new Random();
     static String[] card_suits = { "♥", "♠", "♣", "♦" };
     static String[] card_numbers = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
@@ -105,6 +113,11 @@ public class Distribute {
         for (String p : player_cards)
             System.out.print(p+", ");
         System.out.println("\nTrump card:" + trump_card);
-        System.out.println("\nLast released card:" + plobj.released_card);
+        if (plobj.released_card==null) {
+            System.out.println("Last released card:No Card");
+        }
+        else{
+            System.out.println("\nLast released card:" + plobj.released_card);
+        }
     }
 }

@@ -8,7 +8,7 @@ public class Computer {
         this.obj = obj;
     }
     static String[] card_numbers = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
-    String TrumpCard(/* Now it knows which one is the trump card*/ )
+    String TrumpCard(/*Now it knows which one is the trump card*/ )
     {
         String tc= obj.trump_card;
         String[] trump_array = tc.split("");
@@ -28,11 +28,17 @@ public class Computer {
     }
     void makeDecision()
     {
-        
-        String card=obj.computer_cards[0];
-        if (card.equals(TrumpCard())) {
-            
+        for(int i=0;i<8;i++)
+        {
+            String ccard=obj.computer_cards[0];
+            if (!ccard.equals(TrumpCard())) {
+                plobj.takeReleasedCard(ccard,obj.computer_cards);
+                return;
+            }
+            else
+            {
+                continue;
+            }
         }
-        plobj.takeReleasedCard(card,obj.player_cards);
     }
 }

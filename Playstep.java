@@ -12,10 +12,10 @@ public class Playstep {
 
     String[] arrangeCards(String cards[])
     {
-        obj.print();
-        System.out.println("Enter the cards in order and leave a space after each card name:");
+        // obj.print();
+        System.out.println("Enter the cards in order and put a ',' and leave 'space' after each card name:");
         String input = sc.nextLine();
-        String[] arrangedCard = input.split(" ");
+        String[] arrangedCard = input.split(", ");
         boolean duplicate;
         int i=0;
         do {
@@ -45,7 +45,7 @@ public class Playstep {
 
     String released_card;
 
-    void releaseCard(String topcard, String card)// to check the last released card
+    void releaseCard(String topcard, String card, String[] turn)// to swap one of your card with topcard
     {
         if (topcard.equals(card)) {
             released_card = topcard;
@@ -55,16 +55,16 @@ public class Playstep {
             String target = chosencard;
             String newValue = topcard;
 
-            for (int i = 0; i < obj.player_cards.length; i++) {
-                if (obj.player_cards[i].equals(target)) {
-                    obj.player_cards[i] = newValue; // replace
+            for (int i = 0; i < turn.length; i++) {
+                if (turn[i].equals(target)) {
+                    turn[i] = newValue; // replace
                     break;
                 }
             }
             released_card = chosencard;
         }
     }
-    void takeReleasedCard(String card,String[] turn) {
+    void takeReleasedCard(String card,String[] turn){//to swap one of your card with last released card
         String target = card;
         String newValue = released_card;
 
